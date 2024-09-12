@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Template Landing Page Magang</title>
+    <meta name="description" content="Simple landind page" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+    <!--Replace with your tailwind.css once created-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700"
+      rel="stylesheet"
+    />
+    <!-- Define your gradient here - use online tools to find a gradient matching your branding-->
+    <style>
+      .gradient {
+        background: linear-gradient(90deg, #0000ff 0%, #ffffff 100%);
+      }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      #chartdiv {
+        width: 100%;
+        height: 500px;
+      }
+      #chartdiv2 {
+        width: 100%;
+        height: 500px; /* Atur sesuai kebutuhan */
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+
+    <!-- Resources -->
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Responsive.js"></script>
+    <script src="https://www.amcharts.com/docs/v5/graphics/amcharts5.js"></script>
+    <script src="https://www.amcharts.com/docs/v5/charts/xy-chart.js"></script>
+    <script src="https://www.amcharts.com/docs/v5/themes/Animated.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.qrcode@1.0/jquery.qrcode.min.js"></script>
+  </head>
+  <body
+    class="leading-normal tracking-normal text-white gradient"
+    style="font-family: 'Source Sans Pro', sans-serif"
+  >
+    <!--Nav-->
+    <nav id="header" class="fixed w-full z-30 top-0 text-white">
+      <div
+        class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2"
+      >
+        <div class="pl-4 flex items-center">
+          <a
+            class="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
+            href="#"
+          >
+            DPMPTSP
+          </a>
+        </div>
+        <div class="block lg:hidden pr-4">
+          <button
+            id="nav-toggle"
+            class="flex items-center p-1 text-pink-800 hover:text-gray-900 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+          >
+            <svg
+              class="fill-current h-6 w-6"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <title>Menu</title>
+              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+            </svg>
+          </button>
+        </div>
+        <div
+          class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20"
+          id="nav-content"
+        >
+          <ul class="list-reset lg:flex justify-end flex-1 items-center">
+            <li class="mr-3">
+              <a
+                class="inline-block py-2 px-4 text-black font-bold no-underline"
+                href="#beranda"
+                >BERANDA</a
+              >
+            </li>
+            <li class="mr-3">
+              <a
+                class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
+                href="#profil"
+                >PROFIL</a
+              >
+            </li>
+            <li class="mr-3">
+              <a
+                class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
+                href="#oss-ri"
+                >OSS RI</a
+              >
+            </li>
+            <li class="mr-3">
+              <a
+                class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
+                href="#layanan"
+                >LAYANAN</a
+              >
+            </li>
+            <li class="mr-3">
+              <a
+                class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
+                href="#berita"
+                >BERITA</a
+              >
+            </li>
+            <li class="mr-3">
+              <a
+                class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
+                href="#informasi"
+                >INFORMASI</a
+              >
+            </li>
+            <li class="mr-3">
+              <a
+                class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
+                href="#peta-potensi"
+                >PETA POTENSI</a
+              >
+            </li>
+            <li class="mr-3">
+              <a
+                class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
+                href="#gallery"
+                >GALLERY</a
+              >
+            </li>
+          </ul>
+          <button
+            id="navAction"
+            class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+          >
+            Action
+          </button>
+        </div>
+      </div>
+      <hr class="border-b border-gray-100 opacity-25 my-0 py-0" />
+    </nav>
+    <!--Hero-->
+    <div class="pt-24" id="beranda">
+      <div
+        class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center"
+      >
+        <!--Left Col-->
+        <div
+          class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left"
+        >
+          <h1 class="my-4 text-5xl font-bold leading-tight">
+            Dinas Penanaman Modal & Pelayanan Terpadu Satu Pintu
+          </h1>
+          <p class="leading-normal text-2xl mb-8">
+            Pemerintah Kabupaten Kediri
+          </p>
+        </div>
+        <!--Right Col-->
+        <div class="w-full md:w-3/5 py-6 text-center">
+          <img class="w-full md:w-4/5 z-50" src="hero.png" />
+        </div>
+      </div>
+    </div>
+    <!-- Hero End -->
+    <!-- Section Start Ads  -->
+    <section class="bg-white text-gray-700 body-font" id="profil">
+      <div class="container px-5 py-12 mx-auto">
+        <div class="flex flex-wrap items-center text-center justify-center">
+          <!-- Bagian kiri untuk tulisan "Aplikasi On DPMPTSP Kota Samarinda" -->
+          <div class="p-4 md:w-1/6 sm:w-full">
+            <div class="px-4 py-6">
+              <h2
+                class="title-font text-start font-bold text-xl text-gray-900 bg-red"
+              >
+                Aplikasi On DPMPTSP <br />Kabupaten Kediri
+              </h2>
+            </div>
+          </div>
+
+          <!-- Bagian kanan yang berisi img dan title -->
+          <div class="flex flex-wrap md:w-5/6 sm:w-full justify-center">
+            <div class="p-4 md:w-1/4 sm:w-1/2">
+              <div
+                class="px-4 py-6 transform transition duration-500 hover:scale-110"
+              >
+                <div class="flex justify-center">
+                  <img src="android.svg" class="w-32 mb-3" />
+                </div>
+                <h2 class="title-font font-regular text-2xl text-gray-900">
+                  MPP Digital Android
+                </h2>
+              </div>
+            </div>
+
+            <div class="p-4 md:w-1/4 sm:w-1/2">
+              <div
+                class="px-4 py-6 transform transition duration-500 hover:scale-110"
+              >
+                <div class="flex justify-center">
+                  <img src="invest.svg" class="w-32 mb-3" />
+                </div>
+                <h2 class="title-font font-regular text-2xl text-gray-900">
+                  Potensi Investasi
+                </h2>
+              </div>
+            </div>
+
+            <div class="p-4 md:w-1/4 sm:w-1/2">
+              <div
+                class="px-4 py-6 transform transition duration-500 hover:scale-110"
+              >
+                <div class="flex justify-center">
+                  <img src="rule.svg" class="w-32 mb-3" />
+                </div>
+                <h2 class="title-font font-regular text-2xl text-gray-900">
+                  Peraturan Keputusan
+                </h2>
+              </div>
+            </div>
+
+            <div class="p-4 md:w-1/4 sm:w-1/2">
+              <div
+                class="px-4 py-6 transform transition duration-500 hover:scale-110"
+              >
+                <div class="flex justify-center">
+                  <img src="registration.svg" class="w-32 mb-3" />
+                </div>
+                <h2 class="title-font font-regular text-2xl text-gray-900">
+                  Pendaftaran Online
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Ads -->
+    <!-- Permission Pages Start -->
+    <div class="card bg-white p-4 shadow-md">
+      <h2
+        class="w-full text-5xl font-bold leading-tight text-center text-gray-800"
+      >
+        Jumlah Izin Perbulan
+      </h2>
+      <div
+        id="chartdiv"
+        class="bg-white"
+        style="width: 100%; height: 500px"
+      ></div>
+      <!-- Penjelasan di bawah chart -->
+      <div class="flex justify-center mt-4">
+        <div class="flex-col text-center">
+          <h3 class="text-lg font-medium text-gray-900">Data Grafik</h3>
+          <ul
+            class="text-sm mt-2 text-gray-900 flex gap-5 items-center justify-center font-semibold"
+          >
+            <li>
+              <span
+                class="inline-block text-black w-4 h-4 bg-yellow-500 mr-2 text-gray-900"
+              ></span>
+              Izin Masuk (Kuning)
+            </li>
+            <li>
+              <span
+                class="inline-block w-4 h-4 bg-blue-500 mr-2 text-gray-900"
+              ></span>
+              Izin Terbit (Biru)
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Permission Pages End -->
+    <!-- Indeks Kepuasan Masyarakat Start -->
+    <div class="w-full bg-white py-20" id="index-kepuasan-masyarakat">
+      <h2
+        class="w-full text-5xl font-bold leading-tight text-center text-gray-800"
+      >
+        Index Kepuasan Masyarakat
+      </h2>
+      <div class="flex">
+        <div
+          class="w-1/4 p-4 bg-blue-700 border border-gray-300 rounded-lg text-gray-50"
+        >
+          <div class="text-lg font-semibold mb-4">
+            Index Kepuasan Masyarakat
+          </div>
+          <div class="mb-4">
+            Angka Kepuasan: <strong>90.00 Baik</strong> dari 500 responden
+          </div>
+          <div id="qrcode" class="mt-4"></div>
+        </div>
+
+        <div id="chartdiv2" class="w-3/4 h-[500px] bg-white"></div>
+      </div>
+    </div>
+    <!-- Indeks Kepuasan Masyarakat End -->
+    <div class="flex-col bg-white" id="layanan">
+      <h2
+        class="w-full text-5xl font-bold leading-tight text-center text-gray-800"
+      >
+        Layanan Kami
+      </h2>
+      <div class="lg:flex rounded mx-auto bg-white p-5 text-gray-900">
+        <div class="w-full lg:w-1/3 rounded overflow-hidden shadow-lg m-10">
+          <div class="px-6 py-4">
+            <div class="font-bold text-xl mb-2">"Layanan Perizinan"</div>
+            <p class="text-gray-700 text-base">
+              Layanan Perizinan, ini adalah kumpulan informasi dan prosedur
+              layanan DPMPTSP Kota Samarinda. Pengaduan Online : ini adalah
+              saluran pengaduan resmi DP
+            </p>
+          </div>
+        </div>
+
+        <div class="w-full lg:w-1/3 rounded overflow-hidden shadow-lg m-10">
+          <div class="px-6 py-4">
+            <div class="font-bold text-xl mb-2">"Pengaduan Online"</div>
+            <p class="text-gray-700 text-base">
+              Layanan Aspirasi dan Pengaduan Online Rakyat (LAPOR!) merupakan
+              sarana aspirasi dan pengaduan berbasis media sosial pertama di
+              Indonesia. Dengan
+            </p>
+          </div>
+        </div>
+        <div class="w-full lg:w-1/3 rounded overflow-hidden shadow-lg m-10">
+          <div class="px-6 py-4">
+            <div class="font-bold text-xl mb-2">"Potensi Investasi"</div>
+            <p class="text-gray-700 text-base">
+              Borneo atau Kalimantan telah menjadi target Penanaman Modal Asing
+              atau Foreign Direct Investments (FDI) karena ada 3 provinsi yang
+              ditunjuk sebagai 10
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- News Grid -->
+    <div class="bg-white" id="berita">
+      <h2
+        class="w-full text-5xl font-bold leading-tight text-center text-gray-800"
+      >
+        Berita Kami
+      </h2>
+      <div
+        class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16 relative bg-white"
+      >
+        <div class="grid grid-cols-1 sm:grid-cols-9 gap-10">
+          <div class="sm:col-span-6 lg:col-span-5">
+            <a href="#">
+              <div
+                class="h-56 bg-cover text-center overflow-hidden"
+                style="
+                  background-image: url('https://dpmptsp.samarindakota.go.id/storage/media_pro/1401/conversions/7-cover.jpg');
+                "
+                title="Woman holding a mug"
+              ></div>
+            </a>
+            <div
+              class="mt-3 bg-white rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal"
+            >
+              <div class="lg:pl-16">
+                <a
+                  href="#"
+                  class="text-xs text-indigo-600 uppercase font-medium mb-3 flex items-center hover:text-gray-900 transition duration-500 ease-in-out"
+                  >10 September 2024
+                </a>
+                <a
+                  href="#"
+                  class="text-gray-900 font-bold text-lg mb-2 hover:text-indigo-600 transition duration-500 ease-in-out"
+                  >Kunjungan Study Lapangan Kinerja Organisasi Pelatihan
+                  Admistrator
+                </a>
+                <p class="text-gray-700 text-xs mt-2">
+                  Selasa, 10 September 2024. Kunjungan Study Lapangan Kinerja
+                  Organisasi Pelatihan Admistrator Angkatan II Tahun 2024 Balai
+                  Pengembangan Kompetensi PUPR Wilayah VI Surabaya ke DPMPTSP
+                  Kota Samarinda dan Mal Pelayanan Publik Kota Samarinda
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="sm:col-span-6 lg:col-span-4">
+            <div class="flex items-start mb-3 pb-3">
+              <a href="#" class="inline-block mr-3">
+                <div
+                  class="w-20 h-20 bg-cover bg-center"
+                  style="
+                    background-image: url(https://dpmptsp.samarindakota.go.id/storage/media_pro/1393/conversions/mpp-digital-di-playstore-cover.jpg);
+                  "
+                ></div>
+              </a>
+              <div class="text-sm">
+                <p class="text-gray-600 text-xs">5 September 2024</p>
+                <a
+                  href="#"
+                  class="text-gray-900 font-medium hover:text-indigo-600 leading-none"
+                  >Kabar baik untuk seluruh Kabupaten/Kota yang telah menerapkan
+                  MPP Digital! Aplikasi MPP Digital kini dapat diunduh/diupdate
+                  secara resmi melalui PlayStore. Silakan nakes dan named
+                  mengunduh/mengupdate aplikasi melalui PlayStore</a
+                >
+              </div>
+            </div>
+            <div class="flex items-start mb-3 pb-3">
+              <a href="#" class="inline-block mr-3">
+                <div
+                  class="w-20 h-20 bg-cover bg-center"
+                  style="
+                    background-image: url(https://dpmptsp.samarindakota.go.id/storage/media_pro/1381/conversions/36-cover.jpg);
+                  "
+                ></div>
+              </a>
+              <div class="text-sm w-2/3">
+                <p class="text-gray-600 text-xs">28 Agustus 2024</p>
+                <a
+                  href="#"
+                  class="text-gray-900 font-medium hover:text-indigo-600 leading-none"
+                  >DPMPTSP Kota Samarinda ikut mendukung dan terlibat
+                  transformasi dinamis
+                </a>
+              </div>
+            </div>
+            <div class="flex items-start mb-3 pb-3">
+              <a href="#" class="inline-block mr-3">
+                <div
+                  class="w-20 h-20 bg-cover bg-center"
+                  style="
+                    background-image: url(https://dpmptsp.samarindakota.go.id/storage/media_pro/1385/conversions/32-cover.jpg);
+                  "
+                ></div>
+              </a>
+              <div class="text-sm">
+                <p class="text-gray-600 text-xs">28 Agustus 2024</p>
+                <a
+                  href="#"
+                  class="text-gray-900 font-medium hover:text-indigo-600 leading-none"
+                  >Sosialisasi Implementasi Aksi Perubahan Aplikasi Pena
+                  Persahabatan DPMPTSP Kota Samarinda</a
+                >
+              </div>
+            </div>
+            <div class="flex items-start">
+              <a href="#" class="inline-block mr-3">
+                <div
+                  class="w-20 h-20 bg-cover bg-center"
+                  style="
+                    background-image: url(https://dpmptsp.samarindakota.go.id/storage/media_pro/1386/conversions/33-cover.jpg);
+                  "
+                ></div>
+              </a>
+              <div class="text-sm w-2/3">
+                <p class="text-gray-600 text-xs">28 Agustus 2024</p>
+                <a
+                  href="#"
+                  class="text-gray-900 font-medium hover:text-indigo-600 leading-none"
+                  >Pemberitahuan Pemeliharaan Sistem dan Infrastruktur MPP
+                  Digital
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Gallery Grid -->
+    <div class="flex-col bg-white" id="gallery">
+      <h2
+        class="w-full text-5xl font-bold leading-tight text-center text-gray-800"
+      >
+        Gallery Foto Kami
+      </h2>
+<div class="flex flex-wrap justify-center gap-4 p-4">
+    <img src="https://dpmptsp.kedirikab.go.id/media/galeri/S5566586506698683de8fa3.jpg" class="h-32 w-48 object-cover border bg-blue-100" />
+    <img src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1400/6.jpg" class="h-32 w-48 object-cover border bg-blue-100" />
+    <img src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1393/conversions/mpp-digital-di-playstore-thumb.jpg" class="h-32 w-48 object-cover border bg-blue-100" />
+    <img src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1380/conversions/35-thumb.jpg" class="h-32 w-48 object-cover border bg-blue-100" />
+    <img src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1385/conversions/32-thumb.jpg" class="h-32 w-48 object-cover border bg-blue-100" />
+    <img src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1391/conversions/PENGUMUMAN-PTSP-2024-(2)-thumb.jpg" class="h-32 w-48 object-cover border bg-blue-100" />
+    <img src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1369/conversions/PENGUMUMAN-MPP-2024-(1)-thumb.jpg" class="h-32 w-48 object-cover border bg-blue-100" />
+    <img src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1365/conversions/Peringatan-Feed-2024-thumb.jpg" class="h-32 w-48 object-cover border bg-blue-100" />
+    <img src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1367/conversions/49-thumb.jpg" class="h-32 w-48 object-cover border bg-blue-100" />
+    <img src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1360/conversions/11-thumb.jpg" class="h-32 w-48 object-cover border bg-blue-100" />
+    <img src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1353/conversions/8-thumb.jpg" class="h-32 w-48 object-cover border bg-blue-100" />
+    <img src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1344/1.png" class="h-32 w-48 object-cover border bg-blue-100" />
+    <img src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1334/conversions/58-thumb.jpg" class="h-32 w-48 object-cover border bg-blue-100" />
+    <img src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1319/conversions/49-thumb.jpg" class="h-32 w-48 object-cover border bg-blue-100" />
+    <img src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1310/conversions/62-thumb.jpg" class="h-32 w-48 object-cover border bg-blue-100" />
+</div>
+
+    </div>
+
+    <!--credit by Surjith S M -->
+    <!-- Group Card End -->
+
+    <!-- Change the colour #f8fafc to match the previous section colour -->
+    <svg
+      class="wave-top"
+      viewBox="0 0 1439 147"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+    >
+      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-1.000000, -14.000000)" fill-rule="nonzero">
+          <g class="wave" fill="#f8fafc">
+            <path
+              d="M1440,84 C1383.555,64.3 1342.555,51.3 1317,45 C1259.5,30.824 1206.707,25.526 1169,22 C1129.711,18.326 1044.426,18.475 980,22 C954.25,23.409 922.25,26.742 884,32 C845.122,37.787 818.455,42.121 804,45 C776.833,50.41 728.136,61.77 713,65 C660.023,76.309 621.544,87.729 584,94 C517.525,105.104 484.525,106.438 429,108 C379.49,106.484 342.823,104.484 319,102 C278.571,97.783 231.737,88.736 205,84 C154.629,75.076 86.296,57.743 0,32 L0,0 L1440,0 L1440,84 Z"
+            ></path>
+          </g>
+          <g transform="translate(1.000000, 15.000000)" fill="#FFFFFF">
+            <g
+              transform="translate(719.500000, 68.500000) rotate(-180.000000) translate(-719.500000, -68.500000) "
+            >
+              <path
+                d="M0,0 C90.7283404,0.927527913 147.912752,27.187927 291.910178,59.9119003 C387.908462,81.7278826 543.605069,89.334785 759,82.7326078 C469.336065,156.254352 216.336065,153.6679 0,74.9732496"
+                opacity="0.100000001"
+              ></path>
+              <path
+                d="M100,104.708498 C277.413333,72.2345949 426.147877,52.5246657 546.203633,45.5787101 C666.259389,38.6327546 810.524845,41.7979068 979,55.0741668 C931.069965,56.122511 810.303266,74.8455141 616.699903,111.243176 C423.096539,147.640838 250.863238,145.462612 100,104.708498 Z"
+                opacity="0.100000001"
+              ></path>
+              <path
+                d="M1046,51.6521276 C1130.83045,29.328812 1279.08318,17.607883 1439,40.1656806 L1439,120 C1271.17211,77.9435312 1140.17211,55.1609071 1046,51.6521276 Z"
+                opacity="0.200000003"
+              ></path>
+            </g>
+          </g>
+        </g>
+      </g>
+    </svg>
+    <section class="container mx-auto text-center py-6 mb-12" id="informasi">
+      <!-- Heading -->
+      <h2
+        class="w-full my-2 text-5xl font-bold leading-tight text-center text-white"
+      >
+        DPMPTSP Kabupaten Kediri
+      </h2>
+
+      <!-- Additional Information -->
+      <div class="mt-12 px-4">
+        <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
+          <div class="flex justify-between">
+            <div class="flex-col">
+              <h4 class="text-2xl font-semibold text-gray-800 mb-4">
+                Informasi Kontak
+              </h4>
+              <p class="text-lg text-gray-700 mb-2">Phone: (0354) 681227</p>
+              <p class="text-lg text-gray-700 mb-4">
+                Email: dpmptsp@kedirikab.go.id
+              </p>
+            </div>
+            <div class="flex gap-10">
+              <div class="flex-col">
+                <h4 class="text-2xl font-semibold text-gray-800 mb-4">
+                  Alamat
+                </h4>
+                <p class="text-lg text-gray-700 mb-4">
+                  Jl. Soekarno Hatta No. 14
+                </p>
+              </div>
+              <div class="flex-col">
+                <h4 class="text-2xl font-semibold text-gray-800 mb-4">
+                  Waktu Pelayanan
+                </h4>
+                <p class="text-lg text-gray-700">
+                  Senin - Kamis: 08.00 WIB - 15.00 WIB
+                </p>
+                <p class="text-lg text-gray-700">
+                  Jum'at: 07.30 WIB - 11.30 WIB
+                </p>
+                <p class="text-lg text-gray-700">Minggu: Libur</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--Footer-->
+    <footer class="bg-white">
+      <div class="container mx-auto px-8">
+        <div class="w-full flex justify-between items-center py-6">
+          <div class="flex-1 mb-6 text-black">
+            <a
+              class="text-blue-600 no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
+              href="#"
+            >
+              DPMPTSP Kediri
+            </a>
+          </div>
+          <div class="flex justify-around">
+            <a class="mr-5" href="">
+              <!-- YouTube SVG -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="21px"
+                height="21px"
+                viewBox="0 0 576 512"
+              >
+                <path
+                  fill="black"
+                  d="M549.7 124.1c-6.3-24-24.8-42.8-48.8-49.5C453.3 64 288 64 288 64S122.8 64 75.2 74.7c-24 6.7-42.5 25.5-48.8 49.5C16 173.7 16 256 16 256s0 82.3 10.4 131.9c6.3 24 24.8 42.8 48.8 49.5C122.8 448 288 448 288 448s165.3 0 212.9-10.7c24-6.7 42.5-25.5 48.8-49.5C560 338.3 560 256 560 256s0-82.3-10.4-131.9zM232 336V176l144 80-144 80z"
+                ></path>
+              </svg>
+            </a>
+
+            <a class="mr-5" href="https://twitter.com/dpmptsp_smr">
+              <!-- Twitter SVG -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="21px"
+                height="21px"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  fill="black"
+                  d="M459.4 151.7c.3 4.5.3 9.1.3 13.7 0 140.7-107.1 302.9-302.9 302.9-60.3 0-116.4-17.4-163.7-47.1 8.4 1 16.9 1.5 25.4 1.5 50.1 0 96.5-17 133.5-45.9-46.7-.8-86.3-31.7-99.9-74.1 6.5 1.1 13.1 1.7 20 1.7 9.6 0 19-.1 28.1-2.7-49-9.9-86.1-53-86.1-104.8v-1.3c14.5 8.1 31 13.4 48.6 14-29-19.5-48.1-52.8-48.1-90.5 0-19.9 5.4-38.6 14.7-54.7 53.6 65.7 133.7 108.6 224.1 113.3-1.8-7.9-2.7-16-2.7-24.4 0-58.9 47.7-106.7 106.7-106.7 30.7 0 58.5 13.1 78 33.9 24.1-4.7 46.8-13.5 67.1-25.6-7.9 24.6-24.6 45.2-46.7 58.3 21.5-2.3 41.9-8.3 60.8-16.8-14.3 21.1-32.3 39.6-52.9 54.4z"
+                ></path>
+              </svg>
+            </a>
+
+            <!-- TikTok SVG -->
+            <a class="mr-5" href="https://www.tiktok.com/@dpmptspsmd_official">
+              <svg
+                width="21px"
+                height="21px"
+                style="color: black"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  d="M412.19,118.66a109.27,109.27,0,0,1-9.45-5.5,132.87,132.87,0,0,1-24.27-20.62c-18.1-20.71-24.86-41.72-27.35-56.43h.1C349.14,23.9,350,16,350.13,16H267.69V334.78c0,4.28,0,8.51-.18,12.69,0,.52-.05,1-.08,1.56,0,.23,0,.47-.05.71,0,.06,0,.12,0,.18a70,70,0,0,1-35.22,55.56,68.8,68.8,0,0,1-34.11,9c-38.41,0-69.54-31.32-69.54-70s31.13-70,69.54-70A69.6,69.6,0,0,1,251.87,284V201.08a137.74,137.74,0,0,0-20.13-1.56c-74.59,0-135.24,60.91-135.24,136s60.65,136,135.24,136a134.35,134.35,0,0,0,69-19.23c32.69-20.7,54.53-56.68,59.56-96.64a152.32,152.32,0,0,0,1.74-22.87V177.54c4.54,2.39,9.26,4.64,14.16,6.7,24.56,10.45,47.22,10.33,55.68,10.33h1.79V107.45C441.19,108.16,427.09,108.76,412.19,118.66Z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- jQuery if you need it
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  -->
+    <script>
+      var scrollpos = window.scrollY;
+      var header = document.getElementById("header");
+      var navcontent = document.getElementById("nav-content");
+      var navaction = document.getElementById("navAction");
+      var brandname = document.getElementById("brandname");
+      var toToggle = document.querySelectorAll(".toggleColour");
+
+      document.addEventListener("scroll", function () {
+        /*Apply classes for slide in bar*/
+        scrollpos = window.scrollY;
+
+        if (scrollpos > 10) {
+          header.classList.add("bg-white");
+          navaction.classList.remove("bg-white");
+          navaction.classList.add("gradient");
+          navaction.classList.remove("text-gray-800");
+          navaction.classList.add("text-white");
+          //Use to switch toggleColour colours
+          for (var i = 0; i < toToggle.length; i++) {
+            toToggle[i].classList.add("text-gray-800");
+            toToggle[i].classList.remove("text-white");
+          }
+          header.classList.add("shadow");
+          navcontent.classList.remove("bg-gray-100");
+          navcontent.classList.add("bg-white");
+        } else {
+          header.classList.remove("bg-white");
+          navaction.classList.remove("gradient");
+          navaction.classList.add("bg-white");
+          navaction.classList.remove("text-white");
+          navaction.classList.add("text-gray-800");
+          //Use to switch toggleColour colours
+          for (var i = 0; i < toToggle.length; i++) {
+            toToggle[i].classList.add("text-white");
+            toToggle[i].classList.remove("text-gray-800");
+          }
+
+          header.classList.remove("shadow");
+          navcontent.classList.remove("bg-white");
+          navcontent.classList.add("bg-gray-100");
+        }
+      });
+    </script>
+    <script>
+      /*Toggle dropdown list*/
+      /*https://gist.github.com/slavapas/593e8e50cf4cc16ac972afcbad4f70c8*/
+
+      var navMenuDiv = document.getElementById("nav-content");
+      var navMenu = document.getElementById("nav-toggle");
+
+      document.onclick = check;
+      function check(e) {
+        var target = (e && e.target) || (event && event.srcElement);
+
+        //Nav Menu
+        if (!checkParent(target, navMenuDiv)) {
+          // click NOT on the menu
+          if (checkParent(target, navMenu)) {
+            // click on the link
+            if (navMenuDiv.classList.contains("hidden")) {
+              navMenuDiv.classList.remove("hidden");
+            } else {
+              navMenuDiv.classList.add("hidden");
+            }
+          } else {
+            // click both outside link and outside menu, hide menu
+            navMenuDiv.classList.add("hidden");
+          }
+        }
+      }
+      function checkParent(t, elm) {
+        while (t.parentNode) {
+          if (t == elm) {
+            return true;
+          }
+          t = t.parentNode;
+        }
+        return false;
+      }
+    </script>
+    <!-- Chart code -->
+    <script>
+      am5.ready(function () {
+        // Create root element
+        var root = am5.Root.new("chartdiv");
+
+        // Create custom theme
+        const myTheme = am5.Theme.new(root);
+        myTheme.rule("AxisLabel", ["minor"]).setAll({
+          dy: 1,
+        });
+
+        // Set themes
+        root.setThemes([
+          am5themes_Animated.new(root),
+          myTheme,
+          am5themes_Responsive.new(root),
+        ]);
+
+        // Create chart
+        var chart = root.container.children.push(
+          am5xy.XYChart.new(root, {
+            panX: false,
+            panY: false,
+            wheelX: "panX",
+            wheelY: "zoomX",
+            paddingLeft: 0,
+          })
+        );
+
+        // Add cursor
+        var cursor = chart.set(
+          "cursor",
+          am5xy.XYCursor.new(root, {
+            behavior: "zoomX",
+          })
+        );
+        cursor.lineY.set("visible", false);
+
+        // Sample data: X (Months), Y (Jumlah Izin Perbulan), and Status
+        var izinData = [
+          { month: "Januari", izin: 30, status: "masuk" },
+          { month: "Februari", izin: 25, status: "terbit" },
+          { month: "Maret", izin: 40, status: "masuk" },
+          { month: "April", izin: 35, status: "terbit" },
+          { month: "Mei", izin: 50, status: "masuk" },
+          { month: "Juni", izin: 20, status: "terbit" },
+          { month: "Juli", izin: 45, status: "masuk" },
+          { month: "Agustus", izin: 30, status: "terbit" },
+          { month: "September", izin: 60, status: "masuk" },
+          { month: "Oktober", izin: 55, status: "terbit" },
+          { month: "November", izin: 35, status: "masuk" },
+          { month: "Desember", izin: 40, status: "terbit" },
+        ];
+
+        // Create X Axis (Months)
+        var xAxis = chart.xAxes.push(
+          am5xy.CategoryAxis.new(root, {
+            categoryField: "month",
+            renderer: am5xy.AxisRendererX.new(root, { minGridDistance: 30 }),
+            tooltip: am5.Tooltip.new(root, {}),
+          })
+        );
+        xAxis.data.setAll(izinData);
+
+        // Add X-axis label
+        xAxis.children.push(
+          am5.Label.new(root, {
+            text: "Bulan",
+            x: am5.p50,
+            centerX: am5.p50,
+            y: am5.p100,
+            dy: 20,
+          })
+        );
+
+        // Create Y Axis (Jumlah Izin)
+        var yAxis = chart.yAxes.push(
+          am5xy.ValueAxis.new(root, {
+            renderer: am5xy.AxisRendererY.new(root, {}),
+          })
+        );
+
+        // Add Y-axis label
+        yAxis.children.push(
+          am5.Label.new(root, {
+            text: "Jumlah Izin",
+            rotation: -90,
+            y: am5.p50,
+            centerY: am5.p50,
+            x: -40,
+          })
+        );
+
+        // Add series (Bar chart for Izin Perbulan)
+        var series = chart.series.push(
+          am5xy.ColumnSeries.new(root, {
+            name: "Jumlah Izin",
+            xAxis: xAxis,
+            yAxis: yAxis,
+            valueYField: "izin",
+            categoryXField: "month",
+            tooltip: am5.Tooltip.new(root, {
+              labelText: "{valueY}",
+            }),
+          })
+        );
+
+        // Define column colors based on status
+        series.columns.template.adapters.add("fill", function (fill, target) {
+          return target.dataItem.dataContext.status === "masuk"
+            ? am5.color(0xffd700)
+            : am5.color(0x0000ff); // Kuning untuk "masuk", biru untuk "terbit"
+        });
+
+        series.columns.template.adapters.add(
+          "stroke",
+          function (stroke, target) {
+            return target.dataItem.dataContext.status === "masuk"
+              ? am5.color(0xffd700)
+              : am5.color(0x0000ff);
+          }
+        );
+
+        series.columns.template.setAll({
+          fillOpacity: 0.8,
+          strokeOpacity: 0,
+        });
+
+        series.data.setAll(izinData);
+
+        // Make stuff animate on load
+        series.appear(1000);
+        chart.appear(1000, 100);
+      });
+    </script>
+    <!-- Chart Kepuasan Masyarakat -->
+    <script>
+      // Initialize chart (code provided previously)
+      am5.ready(function () {
+        var root = am5.Root.new("chartdiv2");
+
+        root.setThemes([am5themes_Animated.new(root)]);
+
+        var chart = root.container.children.push(
+          am5xy.XYChart.new(root, {
+            panX: false,
+            panY: false,
+            wheelX: "none",
+            wheelY: "none",
+            paddingLeft: 0,
+          })
+        );
+
+        chart.zoomOutButton.set("forceHidden", true);
+
+        var yRenderer = am5xy.AxisRendererY.new(root, {
+          minGridDistance: 30,
+          minorGridEnabled: true,
+        });
+
+        var yAxis = chart.yAxes.push(
+          am5xy.CategoryAxis.new(root, {
+            maxDeviation: 0,
+            categoryField: "category",
+            renderer: yRenderer,
+            tooltip: am5.Tooltip.new(root, { themeTags: ["axis"] }),
+          })
+        );
+
+        var xAxis = chart.xAxes.push(
+          am5xy.ValueAxis.new(root, {
+            maxDeviation: 0,
+            min: 1,
+            max: 15,
+            numberFormatter: am5.NumberFormatter.new(root, {
+              numberFormat: "#,###a",
+            }),
+            extraMax: 0.1,
+            renderer: am5xy.AxisRendererX.new(root, {
+              strokeOpacity: 0.1,
+              minGridDistance: 80,
+            }),
+          })
+        );
+
+        var series = chart.series.push(
+          am5xy.ColumnSeries.new(root, {
+            name: "Series 1",
+            xAxis: xAxis,
+            yAxis: yAxis,
+            valueXField: "value",
+            categoryYField: "category",
+            tooltip: am5.Tooltip.new(root, {
+              pointerOrientation: "left",
+              labelText: "{valueX}",
+            }),
+          })
+        );
+
+        series.columns.template.setAll({
+          cornerRadiusTR: 5,
+          cornerRadiusBR: 5,
+          strokeOpacity: 0,
+        });
+
+        series.columns.template.adapters.add("fill", function (fill, target) {
+          return chart.get("colors").getIndex(series.columns.indexOf(target));
+        });
+
+        series.columns.template.adapters.add(
+          "stroke",
+          function (stroke, target) {
+            return chart.get("colors").getIndex(series.columns.indexOf(target));
+          }
+        );
+
+        var data = [
+          { category: "Kopetensi Pelaksanaan", value: 12 },
+          { category: "Produk/Layanan", value: 10 },
+          { category: "Biaya Tarif", value: 8 },
+          { category: "Kecepatan", value: 14 },
+          { category: "Prosedur", value: 9 },
+          { category: "Persyaratan", value: 11 },
+        ];
+
+        yAxis.data.setAll(data);
+        series.data.setAll(data);
+
+        function sortCategoryAxis() {
+          series.dataItems.sort(function (x, y) {
+            return x.get("valueX") - y.get("valueX");
+          });
+
+          am5.array.each(yAxis.dataItems, function (dataItem) {
+            var seriesDataItem = getSeriesItem(dataItem.get("category"));
+
+            if (seriesDataItem) {
+              var index = series.dataItems.indexOf(seriesDataItem);
+              var deltaPosition =
+                (index - dataItem.get("index", 0)) / series.dataItems.length;
+              dataItem.set("index", index);
+              dataItem.set("deltaPosition", -deltaPosition);
+              dataItem.animate({
+                key: "deltaPosition",
+                to: 0,
+                duration: 1000,
+                easing: am5.ease.out(am5.ease.cubic),
+              });
+            }
+          });
+
+          yAxis.dataItems.sort(function (x, y) {
+            return x.get("index") - y.get("index");
+          });
+        }
+
+        function getSeriesItem(category) {
+          for (var i = 0; i < series.dataItems.length; i++) {
+            var dataItem = series.dataItems[i];
+            if (dataItem.get("categoryY") === category) {
+              return dataItem;
+            }
+          }
+        }
+
+        chart.set(
+          "cursor",
+          am5xy.XYCursor.new(root, {
+            behavior: "none",
+            xAxis: xAxis,
+            yAxis: yAxis,
+          })
+        );
+
+        sortCategoryAxis();
+
+        series.appear(1000);
+        chart.appear(1000, 100);
+      });
+
+      // Generate QR code
+      $(document).ready(function () {
+        $("#qrcode").qrcode({
+          text: "https://example.com", // URL or text you want to encode in the QR code
+          width: 128,
+          height: 128,
+        });
+      });
+    </script>
+  </body>
+</html>
