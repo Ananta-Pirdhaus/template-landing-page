@@ -25,14 +25,48 @@
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      #chartdiv {
-        width: 100%;
-        height: 500px;
+      /* Styling untuk elemen root */
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif; /* Atur font sesuai kebutuhan */
       }
+
+      body {
+        overflow-x: hidden; /* Menghindari scroll horizontal */
+      }
+
+      #chartdiv,
       #chartdiv2 {
         width: 100%;
+        max-width: 100%; /* Menghindari elemen melebihi lebar kontainer */
         height: 500px; /* Atur sesuai kebutuhan */
+        box-sizing: border-box; /* Memastikan padding dan border termasuk dalam ukuran elemen */
       }
+
+      /* Optional: Mengatur margin bawah untuk elemen chart */
+      #chartdiv,
+      #chartdiv2 {
+        margin-bottom: 20px; /* Atur sesuai kebutuhan */
+      }
+
+      /* Styling untuk memastikan elemen tidak jebol */
+      .chart-container {
+        max-width: 100%;
+        overflow: hidden;
+        position: relative;
+      }
+
+      /* Styling tambahan untuk responsivitas jika diperlukan */
+      @media (max-width: 768px) {
+        #chartdiv,
+        #chartdiv2 {
+          height: 300px; /* Atur sesuai kebutuhan untuk tampilan di perangkat kecil */
+        }
+      }
+
       html {
         scroll-behavior: smooth;
       }
@@ -50,16 +84,19 @@
   </head>
   <body
     class="leading-normal tracking-normal text-white gradient"
-    style="font-family: 'Source Sans Pro', sans-serif"
+    style="font-family: 'Source Sans Pro', sans-serif; margin: 0; padding: 0"
   >
     <!--Nav-->
-    <nav id="header" class="fixed w-full z-30 top-0 text-white">
+    <nav
+      id="header"
+      class="fixed w-full z-30 top-0 text-white bg-white shadow-md"
+    >
       <div
-        class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2"
+        class="container mx-auto flex flex-wrap items-center justify-between py-2"
       >
         <div class="pl-4 flex items-center">
           <a
-            class="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
+            class="toggleColour text-black no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
             href="#"
           >
             DPMPTSP
@@ -80,6 +117,7 @@
             </svg>
           </button>
         </div>
+
         <div
           class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20"
           id="nav-content"
@@ -92,20 +130,7 @@
                 >BERANDA</a
               >
             </li>
-            <li class="mr-3">
-              <a
-                class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
-                href="#profil"
-                >PROFIL</a
-              >
-            </li>
-            <li class="mr-3">
-              <a
-                class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
-                href="#oss-ri"
-                >OSS RI</a
-              >
-            </li>
+
             <li class="mr-3">
               <a
                 class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
@@ -127,19 +152,62 @@
                 >INFORMASI</a
               >
             </li>
-            <li class="mr-3">
-              <a
-                class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
-                href="#peta-potensi"
-                >PETA POTENSI</a
+            <li class="relative">
+              <button
+                id="dropdownNavbarLink"
+                data-dropdown-toggle="dropdownNavbar"
+                class="text-black no-underline hover:text-gray-800 hover:text-underline p-2 flex items-center"
               >
-            </li>
-            <li class="mr-3">
-              <a
-                class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
-                href="#gallery"
-                >GALLERY</a
+                Contact Us
+                <svg
+                  class="w-4 h-4 ml-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+              <!-- Dropdown items -->
+              <div
+                id="dropdownNavbar"
+                class="hidden bg-white text-base z-10 list-none divide-y divide-gray-100 rounded shadow my-4 w-44 absolute right-0"
               >
+                <ul class="py-1">
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2"
+                      >Email</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2"
+                      >Whatsapp</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2"
+                      >Instagram</a
+                    >
+                  </li>
+                </ul>
+                <div class="py-1">
+                  <a
+                    href="#"
+                    class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2"
+                    >Sign out</a
+                  >
+                </div>
+              </div>
             </li>
           </ul>
           <button
@@ -152,28 +220,32 @@
       </div>
       <hr class="border-b border-gray-100 opacity-25 my-0 py-0" />
     </nav>
+
     <!--Hero-->
     <div class="pt-24" id="beranda">
       <div
-        class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center"
+        class="container px-4 mx-auto flex flex-col md:flex-row items-center"
       >
-        <!--Left Col-->
+        <!-- Left Col -->
         <div
-          class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left"
+          class="flex flex-col w-full md:w-2/5 justify-center items-center md:items-start text-center md:text-left mb-8 md:mb-0"
         >
-          <h1 class="my-4 text-5xl font-bold leading-tight">
+          <h1 class="text-4xl md:text-5xl font-bold leading-tight">
             Dinas Penanaman Modal & Pelayanan Terpadu Satu Pintu
           </h1>
-          <p class="leading-normal text-2xl mb-8">
-            Pemerintah Kabupaten Kediri
-          </p>
+          <p class="text-xl md:text-2xl mb-8">Pemerintah Kabupaten Kediri</p>
         </div>
-        <!--Right Col-->
+        <!-- Right Col -->
         <div class="w-full md:w-3/5 py-6 text-center">
-          <img class="w-full md:w-4/5 z-50" src="hero.png" />
+          <img
+            class="w-full md:w-4/5 max-w-full h-auto"
+            src="hero.png"
+            alt="Hero Image"
+          />
         </div>
       </div>
     </div>
+
     <!-- Hero End -->
     <!-- Section Start Ads  -->
     <section class="bg-white text-gray-700 body-font" id="profil">
@@ -314,21 +386,27 @@
       >
         Layanan Kami
       </h2>
-      <div class="lg:flex rounded mx-auto bg-white p-5 text-gray-900">
-        <div class="w-full lg:w-1/3 rounded overflow-hidden shadow-lg m-10">
+      <div
+        class="flex flex-col lg:flex-row rounded mx-auto bg-white p-5 text-gray-900"
+      >
+        <div
+          class="w-full lg:w-1/3 rounded overflow-hidden shadow-lg mb-6 lg:mb-0 lg:mx-2"
+        >
           <div class="px-6 py-4">
-            <div class="font-bold text-xl mb-2">"Layanan Perizinan"</div>
+            <div class="font-bold text-xl mb-2">Layanan Perizinan</div>
             <p class="text-gray-700 text-base">
               Layanan Perizinan, ini adalah kumpulan informasi dan prosedur
-              layanan DPMPTSP Kota Samarinda. Pengaduan Online : ini adalah
+              layanan DPMPTSP Kota Samarinda. Pengaduan Online: ini adalah
               saluran pengaduan resmi DP
             </p>
           </div>
         </div>
 
-        <div class="w-full lg:w-1/3 rounded overflow-hidden shadow-lg m-10">
+        <div
+          class="w-full lg:w-1/3 rounded overflow-hidden shadow-lg mb-6 lg:mb-0 lg:mx-2"
+        >
           <div class="px-6 py-4">
-            <div class="font-bold text-xl mb-2">"Pengaduan Online"</div>
+            <div class="font-bold text-xl mb-2">Pengaduan Online</div>
             <p class="text-gray-700 text-base">
               Layanan Aspirasi dan Pengaduan Online Rakyat (LAPOR!) merupakan
               sarana aspirasi dan pengaduan berbasis media sosial pertama di
@@ -336,9 +414,12 @@
             </p>
           </div>
         </div>
-        <div class="w-full lg:w-1/3 rounded overflow-hidden shadow-lg m-10">
+
+        <div
+          class="w-full lg:w-1/3 rounded overflow-hidden shadow-lg mb-6 lg:mb-0 lg:mx-2"
+        >
           <div class="px-6 py-4">
-            <div class="font-bold text-xl mb-2">"Potensi Investasi"</div>
+            <div class="font-bold text-xl mb-2">Potensi Investasi</div>
             <p class="text-gray-700 text-base">
               Borneo atau Kalimantan telah menjadi target Penanaman Modal Asing
               atau Foreign Direct Investments (FDI) karena ada 3 provinsi yang
@@ -355,126 +436,148 @@
       >
         Berita Kami
       </h2>
-      <div
-        class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16 relative bg-white"
-      >
-        <div class="grid grid-cols-1 sm:grid-cols-9 gap-10">
-          <div class="sm:col-span-6 lg:col-span-5">
-            <a href="#">
-              <div
-                class="h-56 bg-cover text-center overflow-hidden"
-                style="
-                  background-image: url('https://dpmptsp.samarindakota.go.id/storage/media_pro/1401/conversions/7-cover.jpg');
-                "
-                title="Woman holding a mug"
-              ></div>
-            </a>
+      <div class="flex items-center justify-center w-screen min-h-screen p-10">
+        <!-- Container Start -->
+        <div
+          class="grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-2 max-w-6xl"
+        >
+          <!-- Tile 1: Kunjungan Study Lapangan -->
+          <div class="flex flex-col bg-gray-200 rounded-lg p-4 m-2">
             <div
-              class="mt-3 bg-white rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal"
-            >
-              <div class="lg:pl-16">
-                <a
-                  href="#"
-                  class="text-xs text-indigo-600 uppercase font-medium mb-3 flex items-center hover:text-gray-900 transition duration-500 ease-in-out"
-                  >10 September 2024
-                </a>
-                <a
-                  href="#"
-                  class="text-gray-900 font-bold text-lg mb-2 hover:text-indigo-600 transition duration-500 ease-in-out"
-                  >Kunjungan Study Lapangan Kinerja Organisasi Pelatihan
-                  Admistrator
-                </a>
-                <p class="text-gray-700 text-xs mt-2">
-                  Selasa, 10 September 2024. Kunjungan Study Lapangan Kinerja
-                  Organisasi Pelatihan Admistrator Angkatan II Tahun 2024 Balai
-                  Pengembangan Kompetensi PUPR Wilayah VI Surabaya ke DPMPTSP
-                  Kota Samarinda dan Mal Pelayanan Publik Kota Samarinda
-                </p>
-              </div>
+              class="h-40 bg-cover bg-center rounded-lg"
+              style="
+                background-image: url('https://dpmptsp.samarindakota.go.id/storage/media_pro/1401/conversions/7-cover.jpg');
+              "
+              title="Woman holding a mug"
+            ></div>
+            <div class="flex flex-col items-start mt-4">
+              <p class="text-xs text-gray-600">10 September 2024</p>
+              <a
+                href="#"
+                class="text-gray-900 font-bold text-lg mb-2 hover:text-indigo-600 transition duration-500 ease-in-out"
+                >Kunjungan Study Lapangan Kinerja Organisasi Pelatihan
+                Administrator</a
+              >
+              <p class="text-sm text-gray-700 mt-2">
+                Selasa, 10 September 2024. Kunjungan Study Lapangan Kinerja
+                Organisasi Pelatihan Admistrator Angkatan II Tahun 2024 Balai
+                Pengembangan Kompetensi PUPR Wilayah VI Surabaya ke DPMPTSP Kota
+                Samarinda dan Mal Pelayanan Publik Kota Samarinda.
+              </p>
             </div>
           </div>
 
-          <div class="sm:col-span-6 lg:col-span-4">
-            <div class="flex items-start mb-3 pb-3">
-              <a href="#" class="inline-block mr-3">
-                <div
-                  class="w-20 h-20 bg-cover bg-center"
-                  style="
-                    background-image: url(https://dpmptsp.samarindakota.go.id/storage/media_pro/1393/conversions/mpp-digital-di-playstore-cover.jpg);
-                  "
-                ></div>
-              </a>
-              <div class="text-sm">
-                <p class="text-gray-600 text-xs">5 September 2024</p>
-                <a
-                  href="#"
-                  class="text-gray-900 font-medium hover:text-indigo-600 leading-none"
-                  >Kabar baik untuk seluruh Kabupaten/Kota yang telah menerapkan
-                  MPP Digital! Aplikasi MPP Digital kini dapat diunduh/diupdate
-                  secara resmi melalui PlayStore. Silakan nakes dan named
-                  mengunduh/mengupdate aplikasi melalui PlayStore</a
-                >
-              </div>
+          <!-- Tile 2: Kabar baik MPP Digital -->
+          <div class="flex flex-col bg-gray-200 rounded-lg p-4 m-2">
+            <div
+              class="h-40 bg-cover bg-center rounded-lg"
+              style="
+                background-image: url('https://dpmptsp.samarindakota.go.id/storage/media_pro/1393/conversions/mpp-digital-di-playstore-cover.jpg');
+              "
+              title="MPP Digital di PlayStore"
+            ></div>
+            <div class="flex flex-col items-start mt-4">
+              <p class="text-xs text-gray-600">5 September 2024</p>
+              <a
+                href="#"
+                class="text-gray-900 font-bold text-lg mb-2 hover:text-indigo-600 transition duration-500 ease-in-out"
+                >Kabar baik untuk seluruh Kabupaten/Kota yang telah menerapkan
+                MPP Digital!</a
+              >
+              <p class="text-sm text-gray-700 mt-2">
+                Aplikasi MPP Digital kini dapat diunduh/diupdate secara resmi
+                melalui PlayStore. Silakan nakes dan named mengunduh/mengupdate
+                aplikasi melalui PlayStore.
+              </p>
             </div>
-            <div class="flex items-start mb-3 pb-3">
-              <a href="#" class="inline-block mr-3">
-                <div
-                  class="w-20 h-20 bg-cover bg-center"
-                  style="
-                    background-image: url(https://dpmptsp.samarindakota.go.id/storage/media_pro/1381/conversions/36-cover.jpg);
-                  "
-                ></div>
-              </a>
-              <div class="text-sm w-2/3">
-                <p class="text-gray-600 text-xs">28 Agustus 2024</p>
-                <a
-                  href="#"
-                  class="text-gray-900 font-medium hover:text-indigo-600 leading-none"
-                  >DPMPTSP Kota Samarinda ikut mendukung dan terlibat
-                  transformasi dinamis
-                </a>
-              </div>
+          </div>
+
+          <!-- Tile 3: DPMPTSP Kota Samarinda -->
+          <div class="flex flex-col bg-gray-200 rounded-lg p-4 m-2">
+            <div
+              class="h-40 bg-cover bg-center rounded-lg"
+              style="
+                background-image: url('https://dpmptsp.samarindakota.go.id/storage/media_pro/1381/conversions/36-cover.jpg');
+              "
+              title="DPMPTSP Kota Samarinda"
+            ></div>
+            <div class="flex flex-col items-start mt-4">
+              <p class="text-xs text-gray-600">28 Agustus 2024</p>
+              <a
+                href="#"
+                class="text-gray-900 font-bold text-lg mb-2 hover:text-indigo-600 transition duration-500 ease-in-out"
+                >DPMPTSP Kota Samarinda ikut mendukung transformasi dinamis</a
+              >
+               <p class="text-sm text-gray-700 mt-2">Selasa, 10 September 2024. Kunjungan Study Lapangan Kinerja Organisasi Pelatihan Admistrator Angkatan II Tahun 2024 Balai Pengembangan Kompetensi PUPR Wilayah VI Surabaya ke DPMPTSP Kota Samarinda dan Mal Pelayanan Publik Kota Samarinda</p>
             </div>
-            <div class="flex items-start mb-3 pb-3">
-              <a href="#" class="inline-block mr-3">
-                <div
-                  class="w-20 h-20 bg-cover bg-center"
-                  style="
-                    background-image: url(https://dpmptsp.samarindakota.go.id/storage/media_pro/1385/conversions/32-cover.jpg);
-                  "
-                ></div>
-              </a>
-              <div class="text-sm">
-                <p class="text-gray-600 text-xs">28 Agustus 2024</p>
-                <a
-                  href="#"
-                  class="text-gray-900 font-medium hover:text-indigo-600 leading-none"
-                  >Sosialisasi Implementasi Aksi Perubahan Aplikasi Pena
-                  Persahabatan DPMPTSP Kota Samarinda</a
-                >
-              </div>
+          </div>
+
+          <!-- Tile 4: Sosialisasi Implementasi Aksi -->
+          <div class="flex flex-col bg-gray-200 rounded-lg p-4 m-2">
+            <div
+              class="h-40 bg-cover bg-center rounded-lg"
+              style="
+                background-image: url('https://dpmptsp.samarindakota.go.id/storage/media_pro/1385/conversions/32-cover.jpg');
+              "
+              title="Sosialisasi Implementasi Aksi"
+            ></div>
+            <div class="flex flex-col items-start mt-4">
+              <p class="text-xs text-gray-600">28 Agustus 2024</p>
+              <a
+                href="#"
+                class="text-gray-900 font-bold text-lg mb-2 hover:text-indigo-600 transition duration-500 ease-in-out"
+                >Sosialisasi Implementasi Aksi Perubahan Aplikasi Pena
+                Persahabatan DPMPTSP Kota Samarinda</a
+              >
+              <p class="text-sm text-gray-700 mt-2">Sosialisasi Implementasi Aksi Perubahan Aplikasi Pena Persahabatan DPMPTSP Kota Samarinda</p>
             </div>
-            <div class="flex items-start">
-              <a href="#" class="inline-block mr-3">
-                <div
-                  class="w-20 h-20 bg-cover bg-center"
-                  style="
-                    background-image: url(https://dpmptsp.samarindakota.go.id/storage/media_pro/1386/conversions/33-cover.jpg);
-                  "
-                ></div>
-              </a>
-              <div class="text-sm w-2/3">
-                <p class="text-gray-600 text-xs">28 Agustus 2024</p>
-                <a
-                  href="#"
-                  class="text-gray-900 font-medium hover:text-indigo-600 leading-none"
-                  >Pemberitahuan Pemeliharaan Sistem dan Infrastruktur MPP
-                  Digital
-                </a>
-              </div>
+          </div>
+
+          <!-- Tile 5: Pemberitahuan Pemeliharaan Sistem -->
+          <div class="flex flex-col bg-gray-200 rounded-lg p-4 m-2">
+            <div
+              class="h-40 bg-cover bg-center rounded-lg"
+              style="
+                background-image: url('https://dpmptsp.samarindakota.go.id/storage/media_pro/1386/conversions/33-cover.jpg');
+              "
+              title="Pemberitahuan Pemeliharaan Sistem"
+            ></div>
+            <div class="flex flex-col items-start mt-4">
+              <p class="text-xs text-gray-600">28 Agustus 2024</p>
+              <a
+                href="#"
+                class="text-gray-900 font-bold text-lg mb-2 hover:text-indigo-600 transition duration-500 ease-in-out"
+                >Pemberitahuan Pemeliharaan Sistem dan Infrastruktur MPP Digital</a
+              >
+                <p class="text-sm text-gray-700 mt-2">Sehubungan dengan pengembangan aplikasi MPP Digital dalam rangka pembaharuan sistem dan proses bisnis menjadi lebih efektif,saat ini sedang dilakukan perbaikan dan pembenahan aplikasi yang berdampak pada terganggu nya akses bagi masyarakat pengguna MPP Digital.</p>
+            </div>
+          </div>
+          <!-- Tile 6: Pemberitahuan Pemeliharaan Sistem -->
+          <div class="flex flex-col bg-gray-200 rounded-lg p-4 m-2">
+            <div
+              class="h-40 bg-cover bg-center rounded-lg"
+              style="
+                background-image: url('https://dpmptsp.samarindakota.go.id/storage/media_pro/1401/conversions/7-cover.jpg');
+              "
+              title="Pemberitahuan Pemeliharaan Sistem"
+            ></div>
+            <div class="flex flex-col items-start mt-4">
+              <p class="text-xs text-gray-600">23 Agustus 2024</p>
+              <a
+                href="#"
+                class="text-gray-900 font-bold text-lg mb-2 hover:text-indigo-600 transition duration-500 ease-in-out"
+                >PENYESUAIAN TANDA TANGAN PRODUK PERIZINAN</a
+              >
+                <p class="text-sm text-gray-700 mt-2">Layanan Perizinan untuk sementara tidak dapat menerbitkan izin
+                dan dapat kembali menerbitkan izin selambat-lambatnya pada
+                tanggal 26 Agustus 2024. Mohon maaf atas ketidaknyamanan yang di
+                timbulkan</p>
+            
+              </p>
             </div>
           </div>
         </div>
+        <!-- Container End -->
       </div>
     </div>
     <!-- Gallery Grid -->
@@ -484,27 +587,69 @@
       >
         Gallery Foto Kami
       </h2>
-<div class="flex flex-wrap justify-center gap-4 p-4">
-    <img src="https://dpmptsp.kedirikab.go.id/media/galeri/S5566586506698683de8fa3.jpg" class="h-32 w-48 object-cover border bg-blue-100" />
-    <img src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1400/6.jpg" class="h-32 w-48 object-cover border bg-blue-100" />
-    <img src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1393/conversions/mpp-digital-di-playstore-thumb.jpg" class="h-32 w-48 object-cover border bg-blue-100" />
-    <img src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1380/conversions/35-thumb.jpg" class="h-32 w-48 object-cover border bg-blue-100" />
-    <img src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1385/conversions/32-thumb.jpg" class="h-32 w-48 object-cover border bg-blue-100" />
-    <img src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1391/conversions/PENGUMUMAN-PTSP-2024-(2)-thumb.jpg" class="h-32 w-48 object-cover border bg-blue-100" />
-    <img src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1369/conversions/PENGUMUMAN-MPP-2024-(1)-thumb.jpg" class="h-32 w-48 object-cover border bg-blue-100" />
-    <img src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1365/conversions/Peringatan-Feed-2024-thumb.jpg" class="h-32 w-48 object-cover border bg-blue-100" />
-    <img src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1367/conversions/49-thumb.jpg" class="h-32 w-48 object-cover border bg-blue-100" />
-    <img src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1360/conversions/11-thumb.jpg" class="h-32 w-48 object-cover border bg-blue-100" />
-    <img src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1353/conversions/8-thumb.jpg" class="h-32 w-48 object-cover border bg-blue-100" />
-    <img src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1344/1.png" class="h-32 w-48 object-cover border bg-blue-100" />
-    <img src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1334/conversions/58-thumb.jpg" class="h-32 w-48 object-cover border bg-blue-100" />
-    <img src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1319/conversions/49-thumb.jpg" class="h-32 w-48 object-cover border bg-blue-100" />
-    <img src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1310/conversions/62-thumb.jpg" class="h-32 w-48 object-cover border bg-blue-100" />
-</div>
-
+      <div class="flex flex-wrap justify-center gap-4 p-4">
+        <img
+          src="https://dpmptsp.kedirikab.go.id/media/galeri/S5566586506698683de8fa3.jpg"
+          class="h-32 w-48 object-cover border bg-blue-100"
+        />
+        <img
+          src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1400/6.jpg"
+          class="h-32 w-48 object-cover border bg-blue-100"
+        />
+        <img
+          src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1393/conversions/mpp-digital-di-playstore-thumb.jpg"
+          class="h-32 w-48 object-cover border bg-blue-100"
+        />
+        <img
+          src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1380/conversions/35-thumb.jpg"
+          class="h-32 w-48 object-cover border bg-blue-100"
+        />
+        <img
+          src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1385/conversions/32-thumb.jpg"
+          class="h-32 w-48 object-cover border bg-blue-100"
+        />
+        <img
+          src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1391/conversions/PENGUMUMAN-PTSP-2024-(2)-thumb.jpg"
+          class="h-32 w-48 object-cover border bg-blue-100"
+        />
+        <img
+          src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1369/conversions/PENGUMUMAN-MPP-2024-(1)-thumb.jpg"
+          class="h-32 w-48 object-cover border bg-blue-100"
+        />
+        <img
+          src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1365/conversions/Peringatan-Feed-2024-thumb.jpg"
+          class="h-32 w-48 object-cover border bg-blue-100"
+        />
+        <img
+          src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1367/conversions/49-thumb.jpg"
+          class="h-32 w-48 object-cover border bg-blue-100"
+        />
+        <img
+          src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1360/conversions/11-thumb.jpg"
+          class="h-32 w-48 object-cover border bg-blue-100"
+        />
+        <img
+          src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1353/conversions/8-thumb.jpg"
+          class="h-32 w-48 object-cover border bg-blue-100"
+        />
+        <img
+          src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1344/1.png"
+          class="h-32 w-48 object-cover border bg-blue-100"
+        />
+        <img
+          src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1334/conversions/58-thumb.jpg"
+          class="h-32 w-48 object-cover border bg-blue-100"
+        />
+        <img
+          src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1319/conversions/49-thumb.jpg"
+          class="h-32 w-48 object-cover border bg-blue-100"
+        />
+        <img
+          src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1310/conversions/62-thumb.jpg"
+          class="h-32 w-48 object-cover border bg-blue-100"
+        />
+      </div>
     </div>
-
-    <!--credit by Surjith S M -->
     <!-- Group Card End -->
 
     <!-- Change the colour #f8fafc to match the previous section colour -->
@@ -554,8 +699,8 @@
       <!-- Additional Information -->
       <div class="mt-12 px-4">
         <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
-          <div class="flex justify-between">
-            <div class="flex-col">
+          <div class="flex flex-col md:flex-row justify-between">
+            <div class="flex-col mb-6 md:mb-0">
               <h4 class="text-2xl font-semibold text-gray-800 mb-4">
                 Informasi Kontak
               </h4>
@@ -564,8 +709,8 @@
                 Email: dpmptsp@kedirikab.go.id
               </p>
             </div>
-            <div class="flex gap-10">
-              <div class="flex-col">
+            <div class="flex flex-col gap-6 md:gap-10">
+              <div class="flex-col mb-6 md:mb-0">
                 <h4 class="text-2xl font-semibold text-gray-800 mb-4">
                   Alamat
                 </h4>
@@ -592,6 +737,7 @@
     </section>
 
     <!--Footer-->
+
     <footer class="bg-white">
       <div class="container mx-auto px-8">
         <div class="w-full flex justify-between items-center py-6">
@@ -653,6 +799,7 @@
       </div>
     </footer>
 
+    <script src="https://unpkg.com/@themesberg/flowbite@1.1.1/dist/flowbite.bundle.js"></script>
     <!-- jQuery if you need it
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   -->
