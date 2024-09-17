@@ -12,6 +12,10 @@
       rel="stylesheet"
       href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/micromodal/dist/micromodal.css"
+    />
     <!--Replace with your tailwind.css once created-->
     <link
       href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700"
@@ -24,6 +28,7 @@
       }
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
     <style>
       /* Styling untuk elemen root */
       html,
@@ -213,6 +218,7 @@
           <button
             id="navAction"
             class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+            onclick="openModal()"
           >
             Action
           </button>
@@ -221,6 +227,29 @@
       <hr class="border-b border-gray-100 opacity-25 my-0 py-0" />
     </nav>
 
+    <!-- Modal -->
+    <!-- Modal overlay -->
+    <div
+      id="modal"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden"
+    >
+      <!-- Modal content -->
+      <div
+        id="modalContent"
+        class="bg-white p-8 rounded-lg shadow-lg transform -translate-y-full transition-transform duration-300 ease-in-out text-black"
+      >
+        <h2 class="text-xl font-bold mb-4">Modal Title</h2>
+        <p class="mb-4">
+          This is the modal content that slides down from the top.
+        </p>
+        <button
+          class="bg-red-500 text-white px-4 py-2 rounded"
+          onclick="closeModal()"
+        >
+          Close
+        </button>
+      </div>
+    </div>
     <!--Hero-->
     <div class="pt-24" id="beranda">
       <div
@@ -245,8 +274,51 @@
         </div>
       </div>
     </div>
-
     <!-- Hero End -->
+    <!-- Data Table -->
+    <!-- ====== Table Section Start -->
+    <section class="bg-white py-20 lg:py-[120px] border">
+      <h2
+        class="w-full text-5xl font-bold leading-tight text-center text-gray-800"
+      >
+        Jumlah Data Warga Kabupaten Kediri
+      </h2>
+      <div class="container mx-auto">
+        <div class="flex flex-wrap -mx-4">
+          <div class="w-full px-4">
+            <div class="max-w-full overflow-x-auto">
+              <table class="w-full table-auto">
+                <thead class="border">
+                  <tr class="text-center bg-primary">
+                    <th
+                      class="w-1/2 min-w-[160px] py-4 px-3 text-lg font-medium text-black lg:py-7 lg:px-4"
+                    >
+                      Kecamatan
+                    </th>
+                    <th
+                      class="w-1/2 min-w-[160px] py-4 px-3 text-lg font-medium text-black lg:py-7 lg:px-4"
+                    >
+                      Jumlah Penduduk
+                    </th>
+                  </tr>
+                </thead>
+                <tbody id="data-body">
+                  <!-- Data akan diisi menggunakan JavaScript -->
+                </tbody>
+              </table>
+              <button
+                id="show-more"
+                class="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+              >
+                Lihat Selengkapnya
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== Table Section End -->
     <!-- Section Start Ads  -->
     <section class="bg-white text-gray-700 body-font" id="profil">
       <div class="container px-5 py-12 mx-auto">
@@ -255,7 +327,7 @@
           <div class="p-4 md:w-1/6 sm:w-full">
             <div class="px-4 py-6">
               <h2
-                class="title-font text-start font-bold text-xl text-gray-900 bg-red"
+                class="title-font text-start font-bold text-xl text-gray-900 bg-white hover:text-white hover:bg-red-900 p-4 rounded-lg shadow-md"
               >
                 Aplikasi On DPMPTSP <br />Kabupaten Kediri
               </h2>
@@ -508,7 +580,12 @@
                 class="text-gray-900 font-bold text-lg mb-2 hover:text-indigo-600 transition duration-500 ease-in-out"
                 >DPMPTSP Kota Samarinda ikut mendukung transformasi dinamis</a
               >
-               <p class="text-sm text-gray-700 mt-2">Selasa, 10 September 2024. Kunjungan Study Lapangan Kinerja Organisasi Pelatihan Admistrator Angkatan II Tahun 2024 Balai Pengembangan Kompetensi PUPR Wilayah VI Surabaya ke DPMPTSP Kota Samarinda dan Mal Pelayanan Publik Kota Samarinda</p>
+              <p class="text-sm text-gray-700 mt-2">
+                Selasa, 10 September 2024. Kunjungan Study Lapangan Kinerja
+                Organisasi Pelatihan Admistrator Angkatan II Tahun 2024 Balai
+                Pengembangan Kompetensi PUPR Wilayah VI Surabaya ke DPMPTSP Kota
+                Samarinda dan Mal Pelayanan Publik Kota Samarinda
+              </p>
             </div>
           </div>
 
@@ -529,7 +606,10 @@
                 >Sosialisasi Implementasi Aksi Perubahan Aplikasi Pena
                 Persahabatan DPMPTSP Kota Samarinda</a
               >
-              <p class="text-sm text-gray-700 mt-2">Sosialisasi Implementasi Aksi Perubahan Aplikasi Pena Persahabatan DPMPTSP Kota Samarinda</p>
+              <p class="text-sm text-gray-700 mt-2">
+                Sosialisasi Implementasi Aksi Perubahan Aplikasi Pena
+                Persahabatan DPMPTSP Kota Samarinda
+              </p>
             </div>
           </div>
 
@@ -547,9 +627,16 @@
               <a
                 href="#"
                 class="text-gray-900 font-bold text-lg mb-2 hover:text-indigo-600 transition duration-500 ease-in-out"
-                >Pemberitahuan Pemeliharaan Sistem dan Infrastruktur MPP Digital</a
+                >Pemberitahuan Pemeliharaan Sistem dan Infrastruktur MPP
+                Digital</a
               >
-                <p class="text-sm text-gray-700 mt-2">Sehubungan dengan pengembangan aplikasi MPP Digital dalam rangka pembaharuan sistem dan proses bisnis menjadi lebih efektif,saat ini sedang dilakukan perbaikan dan pembenahan aplikasi yang berdampak pada terganggu nya akses bagi masyarakat pengguna MPP Digital.</p>
+              <p class="text-sm text-gray-700 mt-2">
+                Sehubungan dengan pengembangan aplikasi MPP Digital dalam rangka
+                pembaharuan sistem dan proses bisnis menjadi lebih efektif,saat
+                ini sedang dilakukan perbaikan dan pembenahan aplikasi yang
+                berdampak pada terganggu nya akses bagi masyarakat pengguna MPP
+                Digital.
+              </p>
             </div>
           </div>
           <!-- Tile 6: Pemberitahuan Pemeliharaan Sistem -->
@@ -568,11 +655,11 @@
                 class="text-gray-900 font-bold text-lg mb-2 hover:text-indigo-600 transition duration-500 ease-in-out"
                 >PENYESUAIAN TANDA TANGAN PRODUK PERIZINAN</a
               >
-                <p class="text-sm text-gray-700 mt-2">Layanan Perizinan untuk sementara tidak dapat menerbitkan izin
+              <p class="text-sm text-gray-700 mt-2">
+                Layanan Perizinan untuk sementara tidak dapat menerbitkan izin
                 dan dapat kembali menerbitkan izin selambat-lambatnya pada
                 tanggal 26 Agustus 2024. Mohon maaf atas ketidaknyamanan yang di
-                timbulkan</p>
-            
+                timbulkan
               </p>
             </div>
           </div>
@@ -588,66 +675,200 @@
         Gallery Foto Kami
       </h2>
       <div class="flex flex-wrap justify-center gap-4 p-4">
-        <img
-          src="https://dpmptsp.kedirikab.go.id/media/galeri/S5566586506698683de8fa3.jpg"
-          class="h-32 w-48 object-cover border bg-blue-100"
-        />
-        <img
-          src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1400/6.jpg"
-          class="h-32 w-48 object-cover border bg-blue-100"
-        />
-        <img
-          src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1393/conversions/mpp-digital-di-playstore-thumb.jpg"
-          class="h-32 w-48 object-cover border bg-blue-100"
-        />
-        <img
-          src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1380/conversions/35-thumb.jpg"
-          class="h-32 w-48 object-cover border bg-blue-100"
-        />
-        <img
-          src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1385/conversions/32-thumb.jpg"
-          class="h-32 w-48 object-cover border bg-blue-100"
-        />
-        <img
-          src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1391/conversions/PENGUMUMAN-PTSP-2024-(2)-thumb.jpg"
-          class="h-32 w-48 object-cover border bg-blue-100"
-        />
-        <img
-          src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1369/conversions/PENGUMUMAN-MPP-2024-(1)-thumb.jpg"
-          class="h-32 w-48 object-cover border bg-blue-100"
-        />
-        <img
-          src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1365/conversions/Peringatan-Feed-2024-thumb.jpg"
-          class="h-32 w-48 object-cover border bg-blue-100"
-        />
-        <img
-          src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1367/conversions/49-thumb.jpg"
-          class="h-32 w-48 object-cover border bg-blue-100"
-        />
-        <img
-          src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1360/conversions/11-thumb.jpg"
-          class="h-32 w-48 object-cover border bg-blue-100"
-        />
-        <img
-          src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1353/conversions/8-thumb.jpg"
-          class="h-32 w-48 object-cover border bg-blue-100"
-        />
-        <img
-          src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1344/1.png"
-          class="h-32 w-48 object-cover border bg-blue-100"
-        />
-        <img
-          src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1334/conversions/58-thumb.jpg"
-          class="h-32 w-48 object-cover border bg-blue-100"
-        />
-        <img
-          src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1319/conversions/49-thumb.jpg"
-          class="h-32 w-48 object-cover border bg-blue-100"
-        />
-        <img
-          src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1310/conversions/62-thumb.jpg"
-          class="h-32 w-48 object-cover border bg-blue-100"
-        />
+        <div class="relative group">
+          <img
+            src="https://dpmptsp.kedirikab.go.id/media/galeri/S5566586506698683de8fa3.jpg"
+            class="h-32 w-48 object-cover border bg-blue-100"
+            alt="Image 1"
+          />
+          <div
+            class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          >
+            <p class="text-white">Dokumentasi 1</p>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <img
+            src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1400/6.jpg"
+            class="h-32 w-48 object-cover border bg-blue-100"
+            alt="Image 2"
+          />
+          <div
+            class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          >
+            <p class="text-white">Dokumentasi 2</p>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <img
+            src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1393/conversions/mpp-digital-di-playstore-thumb.jpg"
+            class="h-32 w-48 object-cover border bg-blue-100"
+            alt="Image 3"
+          />
+          <div
+            class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          >
+            <p class="text-white">Dokumentasi 3</p>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <img
+            src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1380/conversions/35-thumb.jpg"
+            class="h-32 w-48 object-cover border bg-blue-100"
+            alt="Image 4"
+          />
+          <div
+            class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          >
+            <p class="text-white">Dokumentasi 4</p>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <img
+            src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1385/conversions/32-thumb.jpg"
+            class="h-32 w-48 object-cover border bg-blue-100"
+            alt="Image 5"
+          />
+          <div
+            class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          >
+            <p class="text-white">Dokumentasi 5</p>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <img
+            src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1391/conversions/PENGUMUMAN-PTSP-2024-(2)-thumb.jpg"
+            class="h-32 w-48 object-cover border bg-blue-100"
+            alt="Image 6"
+          />
+          <div
+            class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          >
+            <p class="text-white">Dokumentasi 6</p>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <img
+            src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1369/conversions/PENGUMUMAN-MPP-2024-(1)-thumb.jpg"
+            class="h-32 w-48 object-cover border bg-blue-100"
+            alt="Image 7"
+          />
+          <div
+            class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          >
+            <p class="text-white">Dokumentasi 7</p>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <img
+            src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1365/conversions/Peringatan-Feed-2024-thumb.jpg"
+            class="h-32 w-48 object-cover border bg-blue-100"
+            alt="Image 8"
+          />
+          <div
+            class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          >
+            <p class="text-white">Dokumentasi 8</p>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <img
+            src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1367/conversions/49-thumb.jpg"
+            class="h-32 w-48 object-cover border bg-blue-100"
+            alt="Image 9"
+          />
+          <div
+            class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          >
+            <p class="text-white">Dokumentasi 9</p>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <img
+            src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1360/conversions/11-thumb.jpg"
+            class="h-32 w-48 object-cover border bg-blue-100"
+            alt="Image 10"
+          />
+          <div
+            class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          >
+            <p class="text-white">Dokumentasi 10</p>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <img
+            src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1353/conversions/8-thumb.jpg"
+            class="h-32 w-48 object-cover border bg-blue-100"
+            alt="Image 11"
+          />
+          <div
+            class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          >
+            <p class="text-white">Dokumentasi 11</p>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <img
+            src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1344/1.png"
+            class="h-32 w-48 object-cover border bg-blue-100"
+            alt="Image 12"
+          />
+          <div
+            class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          >
+            <p class="text-white">Dokumentasi 12</p>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <img
+            src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1334/conversions/58-thumb.jpg"
+            class="h-32 w-48 object-cover border bg-blue-100"
+            alt="Image 13"
+          />
+          <div
+            class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          >
+            <p class="text-white">Dokumentasi 13</p>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <img
+            src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1319/conversions/49-thumb.jpg"
+            class="h-32 w-48 object-cover border bg-blue-100"
+            alt="Image 14"
+          />
+          <div
+            class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          >
+            <p class="text-white">Dokumentasi 14</p>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <img
+            src="https://dpmptsp.samarindakota.go.id/storage/media_pro/1310/conversions/62-thumb.jpg"
+            class="h-32 w-48 object-cover border bg-blue-100"
+            alt="Image 15"
+          />
+          <div
+            class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          >
+            <p class="text-white">Dokumentasi 15</p>
+          </div>
+        </div>
       </div>
     </div>
     <!-- Group Card End -->
@@ -801,8 +1022,8 @@
 
     <script src="https://unpkg.com/@themesberg/flowbite@1.1.1/dist/flowbite.bundle.js"></script>
     <!-- jQuery if you need it
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    -->
     <script>
       var scrollpos = window.scrollY;
       var header = document.getElementById("header");
@@ -1164,15 +1385,97 @@
         series.appear(1000);
         chart.appear(1000, 100);
       });
+    </script>
+    <!-- Data Table -->
+    <script>
+      function generateRandomData() {
+        const kecamatan = [
+          "Kecamatan Kediri",
+          "Kecamatan Gurah",
+          "Kecamatan Ngadiluwih",
+          "Kecamatan Puncu",
+          "Kecamatan Mojo",
+          "Kecamatan Kunjang",
+          "Kecamatan Plosoklaten",
+          "Kecamatan Kandat",
+          "Kecamatan Wates",
+          "Kecamatan Papar",
+          "Kecamatan Pare",
+          "Kecamatan Banyakan",
+          "Kecamatan Kayen Kidul",
+          "Kecamatan Kras",
+          "Kecamatan Semen",
+        ];
 
-      // Generate QR code
-      $(document).ready(function () {
-        $("#qrcode").qrcode({
-          text: "https://example.com", // URL or text you want to encode in the QR code
-          width: 128,
-          height: 128,
+        return kecamatan.map((name) => ({
+          name: name,
+          population: Math.floor(Math.random() * 100000) + 10000, // Jumlah acak antara 10.000 dan 110.000
+        }));
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const data = generateRandomData();
+        const tableBody = document.getElementById("data-body");
+        const showMoreButton = document.getElementById("show-more");
+
+        // Function to display only a subset of the data
+        function renderTableData(data, startIndex, endIndex) {
+          tableBody.innerHTML = data
+            .slice(startIndex, endIndex)
+            .map(
+              (item) => `
+                <tr>
+                    <td class="text-black border-b border-l border-[#E8E8E8] bg-[#F3F6FF] py-5 px-2 text-center text-base font-bold">
+                        ${item.name}
+                    </td>
+                    <td class="text-black border-b border-[#E8E8E8] bg-white py-5 px-2 text-center text-base font-bold">
+                        ${item.population.toLocaleString()}
+                    </td>
+                </tr>
+            `
+            )
+            .join("");
+        }
+
+        let visibleRows = 5;
+        renderTableData(data, 0, visibleRows);
+
+        showMoreButton.addEventListener("click", () => {
+          visibleRows = data.length;
+          renderTableData(data, 0, visibleRows);
+          showMoreButton.style.display = "none"; // Hide the button after showing all data
         });
       });
+    </script>
+
+    <script>
+      // Function to open modal
+      function openModal() {
+        const modal = document.getElementById("modal");
+        const modalContent = document.getElementById("modalContent");
+
+        // Show the modal
+        modal.classList.remove("hidden");
+
+        // Animate modal content from top to center
+        setTimeout(() => {
+          modalContent.classList.remove("-translate-y-full");
+        }, 100); // small delay for smooth transition
+      }
+
+      // Function to close modal
+      function closeModal() {
+        const modalContent = document.getElementById("modalContent");
+        const modal = document.getElementById("modal");
+
+        // Animate modal content back to the top
+        modalContent.classList.add("-translate-y-full");
+
+        // Hide the modal after animation completes
+        setTimeout(() => {
+          modal.classList.add("hidden");
+        }, 300); // duration matches the transition time
+      }
     </script>
   </body>
 </html>
