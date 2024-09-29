@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Warga Kabupaten Kediri</title>
+  </head>
+  <body>
+    <section class="container mx-auto p-6 font-mono">
+      <h1 class="text-xl font-semibold mb-4">Daftar Warga Kabupaten Kediri</h1>
+
+      <!-- Tabel Data Warga -->
+      <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
+        <div class="w-full overflow-x-auto">
+          <table class="w-full">
+            <thead>
+              <tr
+                class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600"
+              >
+                <th class="px-4 py-3">Nama</th>
+                <th class="px-4 py-3">Usia</th>
+                <th class="px-4 py-3">Jenis Kelamin</th>
+                <th class="px-4 py-3">Status</th>
+                <th class="px-4 py-3">Kecamatan</th>
+                <th class="px-4 py-3">Action</th>
+              </tr>
+            </thead>
+            <tbody id="data-warga" class="bg-white">
+              <!-- Data warga akan di-render di sini -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Kecamatan di Kabupaten Kediri
+      const kecamatan = [
+        "Badas",
+        "Banyakan",
+        "Gurah",
+        "Kandangan",
+        "Kandat",
+        "Kras",
+        "Mojo",
+        "Ngadiluwih",
+        "Pagu",
+        "Pare",
+        "Plosoklaten",
+        "Puncu",
+        "Ringinrejo",
+        "Tarokan",
+        "Wates",
+      ];
+
+      // Nama random untuk warga
+      const namaLaki = ["Joko", "Slamet", "Rahmat", "Budi", "Ahmad", "Agus"];
+      const namaPerempuan = [
+        "Siti",
+        "Sulastri",
+        "Fatimah",
+        "Dewi",
+        "Ayu",
+        "Rina",
+      ];
+
+      // Data status
+      const statusList = ["Aktif", "Tidak Aktif"];
+
+      // Fungsi untuk mendapatkan nama acak
+      function getRandomNama(jenisKelamin) {
+        if (jenisKelamin === "Laki-Laki") {
+          return namaLaki[Math.floor(Math.random() * namaLaki.length)];
+        } else {
+          return namaPerempuan[
+            Math.floor(Math.random() * namaPerempuan.length)
+          ];
+        }
+      }
+
+      // Fungsi untuk mendapatkan kecamatan random
+      function getRandomKecamatan() {
+        return kecamatan[Math.floor(Math.random() * kecamatan.length)];
+      }
+
+      // Data warga dengan 30 data random
+      const warga = [];
+      for (let i = 0; i < 30; i++) {
+        const jenisKelamin = Math.random() > 0.5 ? "Laki-Laki" : "Perempuan";
+        const wargaBaru = {
+          nama: getRandomNama(jenisKelamin),
+          usia: Math.floor(Math.random() * 50) + 20, // Usia random antara 20 - 70
+          jenis_kelamin: jenisKelamin,
+          status: statusList[Math.floor(Math.random() * statusList.length)],
+          kecamatan: getRandomKecamatan(),
+        };
+        warga.push(wargaBaru);
+      }
+
+      // Fungsi untuk render data warga ke tabel
+      function renderWarga() {
+        const tbody = document.getElementById("data-warga");
+        tbody.innerHTML = ""; // Clear table content
+
+        warga.forEach((w, index) => {
+          const row = document.createElement("tr");
+          row.className = "text-gray-700";
+
+          row.innerHTML = `
+                    <td class="px-4 py-3 border">${w.nama}</td>
+                    <td class="px-4 py-3 border">${w.usia}</td>
+                    <td class="px-4 py-3 border">${w.jenis_kelamin}</td>
+                    <td class="px-4 py-3 border">${w.status}</td>
+                    <td class="px-4 py-3 border">${w.kecamatan}</td>
+                    <td class="px-4 py-3 border">
+                        <button class="px-2 py-1 bg-blue-500 text-white rounded" onclick="editWarga(${index})">Edit</button>
+                        <button class="px-2 py-1 bg-red-500 text-white rounded" onclick="deleteWarga(${index})">Delete</button>
+                    </td>
+                `;
+
+          tbody.appendChild(row);
+        });
+      }
+
+      // Fungsi untuk edit warga
+      function editWarga(index) {
+        const wargaBaru = prompt("Masukkan nama baru:", warga[index].nama);
+        if (wargaBaru !== null) {
+          warga[index].nama = wargaBaru;
+          renderWarga();
+        }
+      }
+
+      // Fungsi untuk hapus warga
+      function deleteWarga(index) {
+        warga.splice(index, 1);
+        renderWarga();
+      }
+
+      // Initial render
+      renderWarga();
+    </script>
+  </body>
+</html>
